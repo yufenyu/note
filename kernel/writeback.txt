@@ -1,0 +1,20 @@
+ext4_writepages
+-> tag_pages_for_writeback
+-> mpage_prepare_extent_to_map
+	* 如果page已经映射了底层的block，那么直接下发IO
+	* 如果page还没有映射底层的block，那么需要先映射
+		write数据，只是写入内存(page)，并没有真的写入到磁盘中，因此存在这种情况
+	
+	 pagevec_lookup_tag?批量查找？目的？性能？
+	 
+	mpage_process_page_bufs
+	* mpage_add_bh_to_extent?
+	
+	* mpage_submit_page：如果page已经映射，那么直接下发IO，将dirty page写入磁盘
+	 ->	ext4_bio_write_page
+	 	*  io_submit_add_bh：貌似每个bio只有一个segment
+		
+		
+		
+P:
+	*bio什么时候会有多个segment
