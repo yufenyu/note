@@ -1,0 +1,17 @@
+P:
+	* dentry->d_name.len = 0
+	* dentry->d_name.name = NULL
+	
+why
+
+	dentry->d_name.len和name什么时候被设置的？
+	
+	sys_open
+	
+struct dentry (include/linux/dentry.h)
+
+struct file (include/linux/fs.h)
+ 	do_sys_open (fs/open.c)
+		* do_filp_open: return struct file;
+		* fd_install: task_struct->files 
+			fdtable[fd] = file

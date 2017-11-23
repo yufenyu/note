@@ -14,7 +14,7 @@ ext4_writepages
 	 ->	ext4_bio_write_page
 	 	*  io_submit_add_bh：貌似每个bio只有一个segment
 		
-		
+	ext4_map_blocks
 		
 P:
 	*bio什么时候会有多个segment
